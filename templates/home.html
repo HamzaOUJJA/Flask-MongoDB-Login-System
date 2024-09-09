@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+
+<body>
+<header>
+    <h1>Welcome, {{ user.first_name }}!</h1>
+</header>
+<div class="container">
+    <div class="card">
+        <div class="card-header">Your Profile</div>
+        <div class="card-body">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Phone:</strong> {{ user.phone }}</p>
+        </div>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+</div>
+</body>
+</html>

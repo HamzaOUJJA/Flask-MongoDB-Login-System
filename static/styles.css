@@ -1,0 +1,96 @@
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Roboto', sans-serif;
+background-color: #f0f2f5;
+color: #333;
+line-height: 1.6;
+}
+.container {
+width: 80%;
+max-width: 900px;
+margin: 20px auto;
+padding: 20px;
+}
+header {
+background: #007bff;
+color: #fff;
+padding: 10px 0;
+text-align: center;
+border-radius: 5px 5px 0 0;
+}
+h1, h2 {
+margin-bottom: 20px;
+}
+form {
+background: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"] {
+width: calc(100% - 20px);
+padding: 10px;
+margin: 10px 0;
+border: 1px solid #ddd;
+border-radius: 5px;
+font-size: 16px;
+}
+input[type="submit"] {
+background-color: #007bff;
+color: #fff;
+border: none;
+padding: 15px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s;
+}
+input[type="submit"]:hover {
+background-color: #0056b3;
+}
+a {
+color: #007bff;
+text-decoration: none;
+font-weight: bold;
+}
+a:hover {
+text-decoration: underline;
+}
+
+footer {
+text-align: center;
+margin-top: 20px;
+}
+
+.card {
+background: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+margin-bottom: 20px;
+}
+
+.card-header {
+font-size: 1.2em;
+margin-bottom: 10px;
+border-bottom: 2px solid #007bff;
+padding-bottom: 10px;
+}
+
+.card-body {
+font-size: 1em;
+}
