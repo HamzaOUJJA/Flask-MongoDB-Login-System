@@ -7,25 +7,37 @@ from cryptography.fernet import Fernet
 
 load_dotenv()
 
+
+
+
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# MongoDB configuration
+
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
-# Encryption setup
+
 encryption_key = os.getenv("ENCRYPTION_KEY").encode()
 cipher_suite = Fernet(encryption_key)
+
+
+
 
 @app.route('/')
 def home():
     if 'username' in session:
         user = mongo.db.users.find_one({'username': session['username']})
-        # Decrypt phone number
+        
         user['phone'] = cipher_suite.decrypt(user['phone']).decode('utf-8')
         return render_template('home.html', user=user)
     return redirect(url_for('login'))
+
+
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -39,8 +51,12 @@ def login():
             return redirect(url_for('home'))
         else:
             return 'Invalid username or password'
-
     return render_template('login.html')
+
+
+
+
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -55,14 +71,11 @@ def register():
         
         hashed_passcode = bcrypt.hashpw(passcode.encode('utf-8'), bcrypt.gensalt())
         
-        # Check if username already exists
         if mongo.db.users.find_one({'username': username}):
             return 'Username already exists'
-        
-        # Encrypt phone number
+
         encrypted_phone = cipher_suite.encrypt(phone.encode('utf-8'))
         
-        # Insert new user
         mongo.db.users.insert_one({
             'email': email,
             'first_name': first_name,
@@ -72,10 +85,11 @@ def register():
             'username': username,
             'passcode': hashed_passcode
         })
-        
         return redirect(url_for('login'))
-
     return render_template('register.html')
+
+
+
 
 @app.route('/logout')
 def logout():
@@ -83,4 +97,4 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
